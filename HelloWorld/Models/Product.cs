@@ -28,7 +28,7 @@ namespace HelloWorld.Models {
 		public ShippingMethod ShippingMethod { get; set; }
 
 		// METHODS
-		public Product(double price, string description) {
+		private Product(double price, string description) {
 			this.ProductID = Guid.NewGuid().ToString();
 			this.Price = price;
 			this.Description = description;
@@ -40,6 +40,10 @@ namespace HelloWorld.Models {
 				   $"Price: {this.Price:C} \n" +
 				   $"Stock: {this.Stock} \n" +
 				   $"Shipping Method: {this.ShippingMethod}";
+		}
+
+		public static Product CreateProduct(double price, string description) {
+			return new Product(price, description);
 		}
 	}
 }

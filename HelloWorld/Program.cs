@@ -7,10 +7,19 @@ using System.Linq;
 namespace HelloWorld {
 	class Program {
 		static void Main(string[] args) {
-			Product product = new Product(19.99, "Lamp");
-			product.ShippingMethod = ShippingMethod.LocalPickup;
+			var customer = Customer.CreateCustomer("John", "Smith", "john@smith.com");
+			var product = Product.CreateProduct(99.99, "Sword");
+			var order = Order.CreateOrder(customer, product);
 
-			Console.WriteLine(product);
+			var anotherProduct = Product.CreateProduct(199.99, "Shield");
+			var anotherOrder = Order.CreateOrder(customer, anotherProduct);
+
+			Console.WriteLine("Saving...");
+
+			order.SaveOrder(@"C:\_test\");
+			anotherOrder.SaveOrder(@"C:\_test\");
+
+			Console.WriteLine("Done!");
 		}
 	}
 }
