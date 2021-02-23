@@ -16,6 +16,10 @@ namespace HelloWorld.Models {
 			}
 		}
 
+		public OrderItem() {
+
+		}
+
 		public OrderItem(Product product, int quantity = 1) {
 			this.OrderItemID = Guid.NewGuid().ToString();
 			this.Product = product;

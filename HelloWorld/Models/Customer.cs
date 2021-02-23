@@ -16,6 +16,8 @@ namespace HelloWorld.Models {
 		public List<Order> Orders { get; set; }
 
 		// METHODS
+		public Customer() {	}
+
 		private Customer(string firstName, string lastName, string email) {
 			this.CustomerID = Guid.NewGuid().ToString();
 			this.FirstName = firstName;

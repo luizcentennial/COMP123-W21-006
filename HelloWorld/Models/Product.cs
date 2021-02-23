@@ -28,6 +28,10 @@ namespace HelloWorld.Models {
 		public ShippingMethod ShippingMethod { get; set; }
 
 		// METHODS
+		public Product() {
+
+		}
+
 		private Product(double price, string description) {
 			this.ProductID = Guid.NewGuid().ToString();
 			this.Price = price;

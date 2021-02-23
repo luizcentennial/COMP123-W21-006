@@ -7,19 +7,31 @@ using System.Linq;
 namespace HelloWorld {
 	class Program {
 		static void Main(string[] args) {
-			var customer = Customer.CreateCustomer("John", "Smith", "john@smith.com");
-			var product = Product.CreateProduct(99.99, "Sword");
-			var order = Order.CreateOrder(customer, product);
+			#region Creating an order file
+			//var customer = Customer.CreateCustomer("John", "Smith", "john@smith.com");
+			//var product = Product.CreateProduct(99.99, "Sword");
+			//var order = Order.CreateOrder(customer, product);
 
-			var anotherProduct = Product.CreateProduct(199.99, "Shield");
-			var anotherOrder = Order.CreateOrder(customer, anotherProduct);
+			//Console.WriteLine("Saving order...");
 
-			Console.WriteLine("Saving...");
+			//try {
+			//	// ANY code is possible here.
+			//	order.SaveOrder(@"C:\_test\");
+			//}
+			//catch (Exception ex) {
+			//	// Do something if an exception happens.
+			//	Console.WriteLine("Error when trying to save order. Order could not be saved.");
+			//	Console.WriteLine(ex.Message);
 
-			order.SaveOrder(@"C:\_test\");
-			anotherOrder.SaveOrder(@"C:\_test\");
+			//	return;
+			//}
 
-			Console.WriteLine("Done!");
+			//Console.WriteLine("Done!");
+			#endregion
+
+			var order = Order.LoadOrder(@"C:\_test\eb2e9786-732d-41d2-a7cd-5e362c36ffa9.xml");
+
+			Console.WriteLine(order);
 		}
 	}
 }

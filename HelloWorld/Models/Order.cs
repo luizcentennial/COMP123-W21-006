@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace HelloWorld.Models {
 	public class Order {
 		public string OrderID { get; set; }
 		public Customer Customer { get; set; }
 		public List<OrderItem> Items { get; set; }
-		public double Total { 
+		public double Total {
 			get {
 				double total = 0;
 
@@ -21,13 +22,12 @@ namespace HelloWorld.Models {
 			}
 		}
 
-		private Order() {
-			this.OrderID = Guid.NewGuid().ToString();
-			this.Items = new List<OrderItem>();
-		}
+		public Order() { }
 
 		public static Order CreateOrder(Customer customer, Product product, int quantity = 1) {
 			var order = new Order();
+			order.OrderID = Guid.NewGuid().ToString();
+			order.Items = new List<OrderItem>();
 			order.Customer = customer;
 
 			var item = new OrderItem(product, quantity);
@@ -43,9 +43,34 @@ namespace HelloWorld.Models {
 		}
 
 		public void SaveOrder(string directory) {
-			string filename = $"Order_{this.OrderID}.txt";
+			directory = directory.Replace('/', '\\');
 
-			File.WriteAllText(directory + filename, this.ToString());
+			if (!directory.EndsWith('\\')) {
+				directory += "\\";
+			}
+
+			// Create serializer
+			var serializer = new XmlSerializer(typeof(Order));
+
+			using (var stream = new FileStream($"{directory}{this.OrderID}.xml", FileMode.Create)) {
+				// Serialize the object
+				serializer.Serialize(stream, this);
+			}
+		}
+
+		public static Order LoadOrder(string filename) {
+			filename = filename.Replace('/', '\\');
+			Order order = null;
+
+			// Create serializer
+			var serializer = new XmlSerializer(typeof(Order));
+
+			using (var stream = new FileStream(filename, FileMode.Open)) {
+				// Deserialize the object
+				order = (Order)serializer.Deserialize(stream);
+			}
+
+			return order;
 		}
 	}
 }
