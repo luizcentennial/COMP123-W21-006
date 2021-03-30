@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HelloWorld.Models {
+namespace Models {
 	public class OrderItem {
 		public string OrderItemID { get; set; }
 		public Product Product { get; set; }

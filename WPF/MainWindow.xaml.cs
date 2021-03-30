@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,16 +24,24 @@ namespace WPF {
 
 			// Customizations go after this line!
 
-			// Accessing controls programatically.
-			txtFirstName.Text = "Hello";
-			txtLastName.Text = "World!";
-
 			// Installing event listeners
 			btnSave.Click += SaveButtonClick;
 		}
 
 		public void SaveButtonClick(object sender, EventArgs e) {
-			MessageBox.Show("Save button clicked!");
+			if (string.IsNullOrWhiteSpace(txtFirstName.Text) || string.IsNullOrWhiteSpace(txtLastName.Text)) {
+				MessageBox.Show($"Please input a first and last name before creating the customer.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+				return;
+			}
+
+			var customer = new Customer();
+			customer.FirstName = txtFirstName.Text;
+			customer.LastName = txtLastName.Text;
+
+			// Saving new customer to database...
+
+			MessageBox.Show($"Customer {customer.FirstName} {customer.LastName} created successfuly!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace HelloWorld.Models {
+namespace Models {
 	public class Customer {
 		// FIELDS
 
@@ -16,7 +16,9 @@ namespace HelloWorld.Models {
 		public List<Order> Orders { get; set; }
 
 		// METHODS
-		public Customer() {	}
+		public Customer() {
+			this.CustomerID = Guid.NewGuid().ToString();
+		}
 
 		private Customer(string firstName, string lastName, string email) {
 			this.CustomerID = Guid.NewGuid().ToString();

@@ -5,3 +5,6 @@
 /Exercise01/obj
 /WPF/bin/Debug/netcoreapp3.1
 /WPF/obj
+/Models/bin/Debug/netstandard2.0
+/Models/obj
+/Services/obj

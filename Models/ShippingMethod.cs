@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HelloWorld.Models {
+namespace Models {
 	public enum ShippingMethod {
 		LocalPickup,
 		Ground,

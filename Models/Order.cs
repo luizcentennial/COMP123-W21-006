@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace HelloWorld.Models {
+namespace Models {
 	public class Order {
 		public string OrderID { get; set; }
 		public Customer Customer { get; set; }
@@ -45,7 +45,7 @@ namespace HelloWorld.Models {
 		public void SaveOrder(string directory) {
 			directory = directory.Replace('/', '\\');
 
-			if (!directory.EndsWith('\\')) {
+			if (!directory.EndsWith("\\")) {
 				directory += "\\";
 			}
 

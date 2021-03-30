@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HelloWorld.Models {
+namespace Models {
 	public class Product {
 		// FIELDS
 		private int stock;
