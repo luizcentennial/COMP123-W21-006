@@ -1,0 +1,49 @@
+﻿<Window x:Class="Exercise02.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exercise02"
+        mc:Ignorable="d"
+        Title="Banking App" Height="450" Width="800">
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<StackPanel Grid.Column="0" Margin="10">
+			<Label Content="Accounts" FontWeight="Bold"/>
+
+			<DataGrid Name="dataAccounts">
+			</DataGrid>
+
+			<Label Content="New Account" Margin="0 10 0 0"/>
+
+			<Label Content="Customer Name"/>
+			<TextBox Name="txtCustomerName"/>
+
+			<Label Content="Date of Birth"/>
+			<DatePicker Name="dateDateOfBirth"/>
+
+			<Button Name="btnCreateAccount" Content="Create Account" Margin="0 10 0 0"/>
+		</StackPanel>
+
+		<StackPanel Grid.Column="1" Margin="10">
+			<Label Content="Transactions" FontWeight="Bold"/>
+			<Label Name="lblSelectedAccount"/>
+
+			<DataGrid Name="dataTransactions">
+			</DataGrid>
+
+			<Label Content="New Transaction" Margin="0 10 0 0"/>
+
+			<Label Content="Transaction Value"/>
+			<TextBox Name="txtTransactionValue"/>
+			
+			<CheckBox Name="checkIsCredit" Content="Is Credit"/>
+
+			<Button Name="btnCreateTransaction" Content="Create Transaction" Margin="0 10 0 0"/>
+		</StackPanel>
+	</Grid>
+</Window>

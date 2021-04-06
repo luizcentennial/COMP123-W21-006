@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercise01", "Exercise01\Ex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF", "WPF\WPF.csproj", "{3AC779CF-858A-4188-828B-A369C4443EDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{8F8E1C87-AEE1-410E-AEBA-1DE118D85E0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{8F8E1C87-AEE1-410E-AEBA-1DE118D85E0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{90DDAC4E-9F44-45A7-BA0A-FADCAA10DEB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{90DDAC4E-9F44-45A7-BA0A-FADCAA10DEB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise02", "Exercise02\Exercise02.csproj", "{A8237216-AA16-4777-8663-68698E02725A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{90DDAC4E-9F44-45A7-BA0A-FADCAA10DEB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90DDAC4E-9F44-45A7-BA0A-FADCAA10DEB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90DDAC4E-9F44-45A7-BA0A-FADCAA10DEB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8237216-AA16-4777-8663-68698E02725A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8237216-AA16-4777-8663-68698E02725A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8237216-AA16-4777-8663-68698E02725A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8237216-AA16-4777-8663-68698E02725A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
