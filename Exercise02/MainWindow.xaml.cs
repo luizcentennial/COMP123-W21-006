@@ -1,4 +1,5 @@
 ﻿using Exercise02.Models;
+using Exercise02.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,28 +31,10 @@ namespace Exercise02 {
 		}
 
 		public List<Account> LoadAccounts() {
-			return new List<Account>() {
-				new Account() {
-					FullName = "Bruce Wayne",
-					DateOfBirth = new DateTime(1985, 7, 15),
-					Transactions = new List<Transaction>() {
-						new CreditTransaction() {
-							TransactionDate = new DateTime(2021, 02, 15),
-							Value = 500
-						}
-					}
-				},
-				new Account() {
-					FullName = "Clark Kent",
-					DateOfBirth = new DateTime(1985, 7, 15),
-					Transactions = new List<Transaction>() {
-						new CreditTransaction() {
-							TransactionDate = new DateTime(2021, 03, 21),
-							Value = 100
-						}
-				}
-				}
-			};
+			var accountService = new AccountService();
+			var accounts = accountService.Load();
+
+			return accounts;
 		}
 
 		private void OnCreateAccount(object sender, EventArgs e) {
@@ -67,10 +50,10 @@ namespace Exercise02 {
 			};
 
 			// Save account...
-			var accounts = this.LoadAccounts();
-			accounts.Add(account);
+			var accountService = new AccountService();
+			accountService.Save(account);
 
-			dataAccounts.ItemsSource = accounts;
+			dataAccounts.ItemsSource = LoadAccounts();
 
 			// Clear textboxes
 			txtCustomerName.Text = null;
@@ -84,7 +67,22 @@ namespace Exercise02 {
 
 			lblSelectedAccount.Content = $"Transactions for account {selectedAccount.AccountNumber}.";
 
-			dataTransactions.ItemsSource = selectedAccount.Transactions;
+			List<Transaction> transactions = new List<Transaction>();
+
+			foreach (var transaction in selectedAccount.DebitTransactions) {
+				transactions.Add(transaction);
+			}
+
+			foreach (var transaction in selectedAccount.CreditTransactions) {
+				transactions.Add(transaction);
+			}
+
+			// Same as above
+			//selectedAccount.CreditTransactions.ForEach(transaction => transactions.Add(transaction));
+
+			transactions = transactions.OrderByDescending(t => t.TransactionDate).ToList();
+
+			dataTransactions.ItemsSource = transactions;
 		}
 
 		private void OnCreateTransaction(object sender, EventArgs e) {
@@ -108,9 +106,7 @@ namespace Exercise02 {
 					Value = double.Parse(txtTransactionValue.Text)
 				};
 
-				selectedAccount.Transactions.Add(transaction);
-				dataTransactions.ItemsSource = null;
-				dataTransactions.ItemsSource = selectedAccount.Transactions;
+				selectedAccount.CreditTransactions.Add(transaction);
 			}
 			else {
 				var transaction = new DebitTransaction() {
@@ -118,10 +114,24 @@ namespace Exercise02 {
 					Value = double.Parse(txtTransactionValue.Text)
 				};
 
-				selectedAccount.Transactions.Add(transaction);
-				dataTransactions.ItemsSource = null;
-				dataTransactions.ItemsSource = selectedAccount.Transactions;
+				selectedAccount.DebitTransactions.Add(transaction);
 			}
+
+			var accountService = new AccountService();
+			accountService.Update(selectedAccount);
+
+			List<Transaction> transactions = new List<Transaction>();
+
+			foreach (var transaction in selectedAccount.DebitTransactions) {
+				transactions.Add(transaction);
+			}
+
+			foreach (var transaction in selectedAccount.CreditTransactions) {
+				transactions.Add(transaction);
+			}
+
+			dataTransactions.ItemsSource = null;
+			dataTransactions.ItemsSource = transactions;
 
 			txtTransactionValue.Text = null;
 			checkIsCredit.IsChecked = false;

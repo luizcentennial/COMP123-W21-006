@@ -4,20 +4,22 @@ using System.Text;
 
 namespace Exercise02.Models {
 	public class Account {
-		public string AccountGuid { get; private set; }
-		public string AccountNumber { get; private set; }
+		public string AccountGuid { get; set; }
+		public string AccountNumber { get; set; }
 		public string FullName { get; set; }
 		public DateTime? DateOfBirth { get; set; }
-		public List<Transaction> Transactions { get; set; }
-		public double Balance { 
+		public List<DebitTransaction> DebitTransactions { get; set; }
+		public List<CreditTransaction> CreditTransactions { get; set; }
+		public double Balance {
 			get {
 				double total = 0;
 
-				foreach (var transaction in this.Transactions) {
-					if (transaction.IsCredit)
-						total += transaction.Value;
-					else
-						total -= transaction.Value;
+				foreach (var transaction in this.DebitTransactions) {
+					total -= transaction.Value;
+				}
+
+				foreach (var transaction in this.CreditTransactions) {
+					total += transaction.Value;
 				}
 
 				return total;
@@ -27,7 +29,8 @@ namespace Exercise02.Models {
 		public Account() {
 			this.AccountGuid = Guid.NewGuid().ToString();
 			this.AccountNumber = new Random().Next(10000, 99999).ToString();
-			this.Transactions = new List<Transaction>();
+			this.DebitTransactions = new List<DebitTransaction>();
+			this.CreditTransactions = new List<CreditTransaction>();
 		}
 	}
 }

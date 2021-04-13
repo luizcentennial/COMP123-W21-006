@@ -6,7 +6,7 @@ namespace Exercise02.Models {
 	public abstract class Transaction {
 		protected double value;
 
-		public string TransactionGuid { get; private set; }
+		public string TransactionGuid { get; set; }
 		public DateTime TransactionDate { get; set; }
 		public double Value { 
 			get {
